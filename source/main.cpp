@@ -1,11 +1,25 @@
 #include <iostream>
-#include <boost/smart_ptr/shared_ptr.hpp>
+#include <random>
+#include <memory>
 
-class A{};
+#include "Animal.h"
+#include "Constans.h"
+#include "Rabbit.h"
 
 int main()
-{
-	boost::shared_ptr<A> number(new A);
-	std::cout << "Hello World" << std::endl;
-	std::cout << number.get() << std::endl;
+{	
+	using TestRabbit = Rabbit<RabbitDefaultRandomModel>;
+	Coord start(0, 0);
+	TestRabbit rabbit(start); 
+	
+	std::cout << "Start: \n";
+	rabbit.displayPosition();
+	
+	for(int i = 0; i < 50; ++i)
+	{
+		rabbit.move();
+		rabbit.displayPosition();
+	}
+	
+	return 0;
 }
